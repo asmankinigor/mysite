@@ -1,0 +1,138 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Задания и обратная связь — MathVizor</title>
+  <meta name="description" content="Четыре типа заданий и три уровня обратной связи платформы MathVizor: сигнальный, объясняющий и рефлексивный.">
+  <meta property="og:title" content="Задания и обратная связь — MathVizor">
+  <meta property="og:description" content="Четыре типа заданий и три уровня обратной связи платформы MathVizor: сигнальный, объясняющий и рефлексивный.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ================= ШАПКА (дублируется на всех страницах) ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="MathVizor — на главную">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        <span>MathVizor</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="index.html">Главная</a></li>
+          <li class="has-submenu">
+            <a href="platform.html">Платформа</a>
+            <ul class="submenu">
+              <li><a href="platform.html">Возможности и интерфейс</a></li>
+              <li><a href="technology.html">Архитектура и технологии</a></li>
+              <li><a href="tasks.html" class="is-active" aria-current="page">Задания и обратная связь</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="pedagogy.html">Педагогика</a>
+            <ul class="submenu">
+              <li><a href="pedagogy.html">Педагогический дизайн</a></li>
+              <li><a href="methodology.html">Методика использования</a></li>
+              <li><a href="results.html">Результаты апробации</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="about.html">О проекте</a>
+            <ul class="submenu">
+              <li><a href="about.html#authors">Авторы</a></li>
+              <li><a href="publications.html">Публикации</a></li>
+              <li><a href="about.html#contacts">Контакты</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-primary header-cta" href="publications.html">Читать статью</a>
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="main-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main">
+<nav class="breadcrumbs" aria-label="Хлебные крошки"><ol><li><a href="index.html">Главная</a></li><li><a href="platform.html">Платформа</a></li><li aria-current="page">Задания</li></ol></nav>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Задания и обратная связь</h1>
+    <p class="lead">Четыре типа заданий и три уровня обратной связи: система помогает найти ошибку, но не подменяет рассуждение готовым ответом.</p>
+  </div>
+</section>
+
+<section class="section" id="types">
+  <div class="container">
+    <h2>Типы заданий</h2>
+    <ul class="card-grid">
+      <li class="card"><h3>1. Распознавание структуры</h3><p>Сопоставить график, формулу и словесное описание зависимости. Проверка — выбором соответствия и кратким пояснением.</p></li>
+      <li class="card"><h3>2. Построение модели</h3><p>Изменить параметры и исследовать их влияние на поведение функции.</p></li>
+      <li class="card"><h3>3. Объяснение</h3><p>Выбрать корректное обоснование перехода от одного выражения к другому.</p></li>
+      <li class="card"><h3>4. Исследовательские</h3><p>Сформулировать гипотезу, проверить её в среде и аргументировать вывод.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section-alt" id="feedback">
+  <div class="container">
+    <h2>Три уровня обратной связи</h2>
+    <figure>
+      <img src="assets/img/feedback-levels.svg" alt="Схема из трёх уровней: сигнальный, объясняющий, рефлексивный">
+      <figcaption>Рисунок 2 — уровни обратной связи в MathVizor</figcaption>
+    </figure>
+    <div class="two-columns">
+      <article class="card"><h3>Сигнальный</h3><p>Указание на шаг, где возникло расхождение.</p></article>
+      <article class="card"><h3>Объясняющий</h3><p>Подсказка о применяемом свойстве или теореме.</p></article>
+      <article class="card"><h3>Рефлексивный</h3><p>Предложение сравнить результат с исходной гипотезой.</p></article>
+    </div>
+    <p class="mt">Каждое обращение к подсказке фиксируется в журнале и учитывается преподавателем при формировании индивидуальной траектории.</p>
+  </div>
+</section>
+
+<section class="section" id="example">
+  <div class="container">
+    <h2>Пример задания</h2>
+    <p>Функция <strong>f(x) = x³ + ax</strong>. При <em>a</em> &lt; 0 производная имеет два нуля и функция имеет два экстремума; при <em>a</em> ≥ 0 экстремумов нет. Это правило используется в заданиях на формулировку и проверку гипотезы.</p>
+    <p><a class="text-link" href="methodology.html">Посмотреть фрагмент урока →</a></p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container"><h2>Как это применяется на уроке</h2><a class="btn btn-light" href="methodology.html">Перейти к методике</a></div>
+</section>
+  </main>
+
+  <!-- ================= ПОДВАЛ (дублируется на всех страницах) ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>MathVizor</strong>
+        <p>Лучшая онлайн-разработка в области математики и математического образования</p>
+      </div>
+      <nav aria-label="Ссылки в подвале">
+        <ul>
+          <li><a href="platform.html">Платформа</a></li>
+          <li><a href="methodology.html">Методика</a></li>
+          <li><a href="results.html">Результаты</a></li>
+          <li><a href="publications.html">Публикации</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>Мордовский государственный педагогический университет им. М. Е. Евсевьева</p>
+        <p>Саранск, Россия</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

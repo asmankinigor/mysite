@@ -1,0 +1,151 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Методика использования — MathVizor</title>
+  <meta name="description" content="Методика использования платформы MathVizor: четыре этапа исследовательского цикла и фрагмент урока по теме производной.">
+  <meta property="og:title" content="Методика использования — MathVizor">
+  <meta property="og:description" content="Методика использования платформы MathVizor: четыре этапа исследовательского цикла и фрагмент урока по теме производной.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ================= ШАПКА (дублируется на всех страницах) ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="MathVizor — на главную">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        <span>MathVizor</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="index.html">Главная</a></li>
+          <li class="has-submenu">
+            <a href="platform.html">Платформа</a>
+            <ul class="submenu">
+              <li><a href="platform.html">Возможности и интерфейс</a></li>
+              <li><a href="technology.html">Архитектура и технологии</a></li>
+              <li><a href="tasks.html">Задания и обратная связь</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="pedagogy.html">Педагогика</a>
+            <ul class="submenu">
+              <li><a href="pedagogy.html">Педагогический дизайн</a></li>
+              <li><a href="methodology.html" class="is-active" aria-current="page">Методика использования</a></li>
+              <li><a href="results.html">Результаты апробации</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="about.html">О проекте</a>
+            <ul class="submenu">
+              <li><a href="about.html#authors">Авторы</a></li>
+              <li><a href="publications.html">Публикации</a></li>
+              <li><a href="about.html#contacts">Контакты</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-primary header-cta" href="publications.html">Читать статью</a>
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="main-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main">
+<nav class="breadcrumbs" aria-label="Хлебные крошки"><ol><li><a href="index.html">Главная</a></li><li><a href="pedagogy.html">Педагогика</a></li><li aria-current="page">Методика</li></ol></nav>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Методика использования</h1>
+    <p class="lead">Четыре этапа исследовательского цикла, поддерживаемые встроенной аналитикой платформы.</p>
+  </div>
+</section>
+
+<section class="section" id="cycle-steps">
+  <div class="container">
+    <h2>Исследовательский цикл</h2>
+    <figure class="cycle-figure">
+      <img src="assets/img/methodology-cycle.svg" alt="Схема исследовательского цикла из четырёх этапов">
+      <figcaption>Рисунок 1 — четыре этапа исследовательского цикла</figcaption>
+    </figure>
+    <ol class="timeline">
+      <li><h3>1. Проблемная ситуация</h3><p>Преподаватель формулирует вопрос, например: «Как изменение коэффициента при x влияет на число экстремумов функции?» Обучающиеся фиксируют гипотезы до начала экспериментов.</p></li>
+      <li><h3>2. Эксперимент</h3><p>Строится семейство графиков, варьируются параметры, отыскиваются критические значения.</p></li>
+      <li><h3>3. Аналитическое подтверждение</h3><p>Наглядное наблюдение связывается с символьными вычислениями.</p></li>
+      <li><h3>4. Рефлексия</h3><p>Сопоставление гипотезы с выводом; при изучении производной — переход от стремления секущей к касательной к пределу отношения приращений.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt" id="lesson">
+  <div class="container">
+    <h2>Фрагмент урока: «Производная и исследование функции»</h2>
+    <details class="accordion" open>
+      <summary>Шаг 1. Предсказание</summary>
+      <p>Учитель задаёт функцию <strong>f(x) = x³ − 3x</strong> и просит предсказать число экстремумов, не выполняя вычислений.</p>
+    </details>
+    <details class="accordion">
+      <summary>Шаг 2. Визуальный эксперимент</summary>
+      <p>Обучающиеся строят график в среде, варьируют коэффициенты и сравнивают исходное предсказание с наблюдаемым результатом.</p>
+    </details>
+    <details class="accordion">
+      <summary>Шаг 3. Символьное дифференцирование</summary>
+      <p>Переход к f′(x) = 3x² − 3, поиск критических точек x = ±1 и объяснение смены знака производной.</p>
+    </details>
+    <details class="accordion">
+      <summary>Шаг 4. Рефлексия</summary>
+      <p>Обучающиеся указывают, какая информация о функции была получена визуально, а какая — аналитически.</p>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="support">
+  <div class="container">
+    <h2>Ошибка и аналитика</h2>
+    <div class="two-columns">
+      <article class="card"><h3>Работа с ошибкой</h3><p>Ошибка не прерывает работу: система показывает, на каком преобразовании возникло расхождение.</p></article>
+      <article class="card"><h3>Режим преподавателя</h3><p>Агрегированная аналитика: доля неверных гипотез, распределение времени, список типичных ошибок.</p></article>
+    </div>
+    <p class="mt">Методика апробирована в очном и дистанционном вариантах с сохранением логики исследовательского цикла.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container"><h2>Увидеть результаты апробации</h2><a class="btn btn-light" href="results.html">Перейти к результатам</a></div>
+</section>
+  </main>
+
+  <!-- ================= ПОДВАЛ (дублируется на всех страницах) ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>MathVizor</strong>
+        <p>Лучшая онлайн-разработка в области математики и математического образования</p>
+      </div>
+      <nav aria-label="Ссылки в подвале">
+        <ul>
+          <li><a href="platform.html">Платформа</a></li>
+          <li><a href="methodology.html">Методика</a></li>
+          <li><a href="results.html">Результаты</a></li>
+          <li><a href="publications.html">Публикации</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>Мордовский государственный педагогический университет им. М. Е. Евсевьева</p>
+        <p>Саранск, Россия</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

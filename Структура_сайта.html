@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Структура сайта MathVizor — рабочий документ</title>
+  <meta name="description" content="Рабочий документ: структура сайта проекта MathVizor, карта страниц и готовый HTML-код каркаса.">
+  <style>
+    :root {
+      --ink: #1b2430;
+      --muted: #5d6b7a;
+      --line: #dfe5ec;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --code-bg: #111827;
+      --code-ink: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font: 16px/1.6 "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-dark); }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* Шапка документа */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+    .topbar .container {
+      display: flex; align-items: center; gap: 24px;
+      min-height: 64px; flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .doc-nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .doc-nav a { text-decoration: none; font-size: 14px; font-weight: 600; }
+
+    /* Основные секции */
+    main { padding-bottom: 64px; }
+    .hero-doc {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff; padding: 56px 0 48px;
+    }
+    .hero-doc .eyebrow { margin: 0 0 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+    .hero-doc h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; }
+    .hero-doc p.lead { margin: 0; max-width: 720px; font-size: 18px; opacity: .95; }
+    .hero-doc .badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+    .badge { border: 1px solid rgba(255,255,255,.5); border-radius: 999px; padding: 5px 13px; font-size: 13px; }
+
+    section.doc-section { padding: 44px 0 8px; }
+    section.doc-section h2 { margin: 0 0 6px; font-size: 26px; }
+    section.doc-section h3 { margin: 26px 0 8px; font-size: 19px; }
+    .hint { color: var(--muted); margin: 0 0 20px; }
+
+    .panel {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 20px 22px; margin: 16px 0;
+      box-shadow: 0 2px 8px rgba(20,40,80,.04);
+    }
+
+    /* Дерево сайта */
+    .tree, .tree ul { list-style: none; margin: 0; padding-left: 22px; }
+    .tree > li { padding-left: 0; }
+    .tree li { position: relative; padding: 3px 0; }
+    .tree li::before {
+      content: "├─"; position: absolute; left: -20px; color: #94a3b8;
+      font-family: ui-monospace, Consolas, monospace;
+    }
+    .tree > li::before { content: "▸"; color: var(--accent); }
+    .tree ul li:last-child::before { content: "└─"; }
+    .tree code {
+      background: #eef2ff; color: #1e40af; padding: 1px 6px;
+      border-radius: 5px; font-size: 14px;
+    }
+
+    /* Таблица */
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    caption { text-align: left; font-weight: 700; padding: 8px 0; }
+    th, td { border: 1px solid var(--line); padding: 9px 11px; text-align: left; vertical-align: top; }
+    thead th { background: #eef2ff; }
+
+    /* Карточки страниц */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 18px 20px;
+    }
+    .card h3 { margin: 0 0 4px; font-size: 17px; }
+    .card .file { font: 13px ui-monospace, Consolas, monospace; color: var(--accent); }
+    .card ul { margin: 10px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+    .card li { margin: 3px 0; }
+
+    /* Блоки кода */
+    .code-card {
+      background: var(--code-bg); border-radius: 12px;
+      margin: 18px 0; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15,23,42,.18);
+    }
+    .code-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 11px 16px; background: #1f2937; color: #e5e7eb;
+      border-bottom: 1px solid #374151;
+    }
+    .code-head .name { font: 600 14px ui-monospace, Consolas, monospace; }
+    .code-head .desc { font-size: 12px; color: #9ca3af; margin-left: 8px; }
+    .copy-btn {
+      background: #374151; color: #f9fafb; border: 1px solid #4b5563;
+      border-radius: 7px; padding: 5px 11px; font-size: 12px; cursor: pointer;
+    }
+    .copy-btn:hover { background: #4b5563; }
+    .copy-btn.done { background: #065f46; border-color: #059669; }
+    pre {
+      margin: 0; padding: 18px 20px; max-height: 620px; overflow: auto;
+      color: var(--code-ink);
+      font: 13px/1.55 ui-monospace, "Cascadia Code", Consolas, monospace;
+      tab-size: 2;
+    }
+    code { white-space: pre; }
+
+    .note {
+      border-left: 4px solid var(--accent); background: #eff6ff;
+      padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0;
+      font-size: 14px;
+    }
+    footer.doc-footer {
+      border-top: 1px solid var(--line); padding: 22px 0 34px;
+      color: var(--muted); font-size: 13px;
+    }
+    @media (max-width: 720px) {
+      .doc-nav { display: none; }
+      pre { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="#top">Math<span>Vizor</span> · структура</a>
+    <nav class="doc-nav" aria-label="Навигация по документу">
+      <a href="#map">Карта сайта</a>
+      <a href="#matrix">Соответствие</a>
+      <a href="#pages">Страницы</a>
+      <a href="#files">Файлы</a>
+      <a href="#code">HTML-код</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-doc" id="top">
+  <div class="container">
+    <p class="eyebrow">Рабочий документ · версия 1.0</p>
+    <h1>Структура сайта проекта MathVizor</h1>
+    <p class="lead">Документ создан на основе статьи-заявки «Лучшая онлайн-разработка». Ниже — карта сайта, наполнение страниц и готовый HTML-код каркаса, который можно скопировать в файлы.</p>
+    <div class="badges">
+      <span class="badge">10 страниц</span>
+      <span class="badge">чистый HTML5</span>
+      <span class="badge">без CMS и сборщиков</span>
+      <span class="badge">доступность WCAG</span>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section class="doc-section" id="map">
+    <div class="container">
+      <h2>1. Карта сайта</h2>
+      <p class="hint">Пять пунктов верхнего меню, два из которых раскрываются в подменю.</p>
+      <div class="panel">
+        <ul class="tree">
+          <li><code>index.html</code> — Главная</li>
+          <li>Платформа
+            <ul>
+              <li><code>platform.html</code> — Возможности и интерфейс</li>
+              <li><code>technology.html</code> — Архитектура и технологии</li>
+              <li><code>tasks.html</code> — Задания и обратная связь</li>
+            </ul>
+          </li>
+          <li>Педагогика
+            <ul>
+              <li><code>pedagogy.html</code> — Педагогический дизайн</li>
+              <li><code>methodology.html</code> — Методика использования</li>
+              <li><code>results.html</code> — Результаты апробации</li>
+            </ul>
+          </li>
+          <li>О проекте
+            <ul>
+              <li><code>about.html</code> — Авторы, новизна, контакты (#contacts)</li>
+              <li><code>publications.html</code> — Публикации</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="note"><strong>Навигация:</strong> Главная · Платформа · Педагогика · О проекте. Постоянный CTA в шапке — кнопка «Читать статью» → <code>publications.html</code>.</div>
+    </div>
+  </section>
+
+  <section class="doc-section" id="matrix">
+    <div class="container">
+      <h2>2. Соответствие разделов статьи страницам</h2>
+      <div class="panel table-wrap">
+        <table>
+          <caption>Таблица соответствия</caption>
+          <thead>
+            <tr><th>Раздел документа</th><th>Страница</th><th>Что переносим</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Титул, номинация, аннотация RU/EN</td><td>index.html, publications.html</td><td>Название, авторы, вуз, описание</td></tr>
+            <tr><td>Введение</td><td>index.html, pedagogy.html</td><td>Проблема, цель, задачи, 86 чел.</td></tr>
+            <tr><td>1. Анализ цифровых ресурсов</td><td>index.html, pedagogy.html</td><td>Обзор аналогов, противоречие</td></tr>
+            <tr><td>2. Концепция и дизайн</td><td>pedagogy.html</td><td>«Видимое мышление», принципы, таксономия</td></tr>
+            <tr><td>2.1. Архитектура</td><td>technology.html</td><td>Стек, LTI 1.3, xAPI, WCAG 2.1, Docker</td></tr>
+            <tr><td>2.2. Интерфейс, таблица 1</td><td>platform.html</td><td>4 модуля, рабочий лист, таблица</td></tr>
+            <tr><td>2.3. Задания</td><td>tasks.html</td><td>4 типа заданий, 3 уровня фидбека</td></tr>
+            <tr><td>3. Методика</td><td>methodology.html</td><td>4 этапа цикла, пример f(x)=x³−3x</td></tr>
+            <tr><td>4. Результаты, таблица 2</td><td>results.html</td><td>44/42 чел., 54→78 %, p&lt;0,05</td></tr>
+            <tr><td>5. Новизна</td><td>about.html</td><td>3 пункта новизны, сферы применения</td></tr>
+            <tr><td>Список литературы</td><td>publications.html</td><td>12 источников</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section" id="pages">
+    <div class="container">
+      <h2>3. Наполнение страниц</h2>
+      <p class="hint">Краткий состав блоков — то, что должно быть на каждой странице.</p>
+      <div class="cards">
+        <div class="card"><h3>Главная</h3><div class="file">index.html</div><ul><li>Hero с номинацией и CTA</li><li>4 ключевые цифры</li><li>Проблема и цикл из 4 шагов</li><li>Карточки модулей</li><li>Мини-диаграмма результатов</li><li>Авторы и финальный CTA</li></ul></div>
+        <div class="card"><h3>Платформа</h3><div class="file">platform.html</div><ul><li>Обзор и цикл из 5 этапов</li><li>Скриншот рабочего листа</li><li>4 модуля</li><li>Таблица 1</li><li>Сдержанный стиль интерфейса</li></ul></div>
+        <div class="card"><h3>Архитектура</h3><div class="file">technology.html</div><ul><li>Схема 3 слоёв (SVG)</li><li>Клиент: TS, React, SVG, Canvas</li><li>Сервер: Python, FastAPI, SymPy</li><li>PostgreSQL, Redis, Celery</li><li>LTI 1.3, xAPI, WCAG 2.1, Docker</li></ul></div>
+        <div class="card"><h3>Задания</h3><div class="file">tasks.html</div><ul><li>4 типа заданий</li><li>3 уровня обратной связи</li><li>Журнал подсказок</li><li>Пример с ползунком параметра</li></ul></div>
+        <div class="card"><h3>Педагогика</h3><div class="file">pedagogy.html</div><ul><li>Концепция «видимого мышления»</li><li>4 принципа</li><li>Таксономия целей</li><li>Сравнение с аналогами</li></ul></div>
+        <div class="card"><h3>Методика</h3><div class="file">methodology.html</div><ul><li>4 этапа исследовательского цикла</li><li>Фрагмент урока: f(x)=x³−3x</li><li>Работа с ошибкой</li><li>Аналитика для преподавателя</li></ul></div>
+        <div class="card"><h3>Результаты</h3><div class="file">results.html</div><ul><li>Дизайн: 44 + 42 человека</li><li>Динамика 54→78 / 53→64</li><li>Таблица 2 с оговоркой</li><li>Опрос 87 % / 79 %</li><li>Статистика и ограничения</li></ul></div>
+        <div class="card"><h3>О проекте</h3><div class="file">about.html</div><ul><li>Автор и руководитель</li><li>3 пункта новизны</li><li>Область применения</li><li>Перспективы</li><li>Контакты #contacts</li></ul></div>
+        <div class="card"><h3>Публикации</h3><div class="file">publications.html</div><ul><li>Аннотация RU</li><li>Abstract EN</li><li>Скачивание статьи</li><li>Список литературы (12)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="doc-section" id="files">
+    <div class="container">
+      <h2>4. Файловая структура</h2>
+      <div class="panel">
+        <pre>mathvizor-site/
+├── index.html                  ├── tasks.html
+├── platform.html               ├── pedagogy.html
+├── technology.html             ├── methodology.html
+├── results.html                ├── about.html
+├── publications.html           ├── 404.html
+├── README.md                   ├── build_site.py
+├── check_links.py              ├── Структура_сайта.md
+├── Структура_сайта.html        (этот файл)
+└── assets/
+    ├── css/style.css           └── css/print.css (опционально)
+    ├── js/main.js
+    ├── img/
+    │   ├── logo.svg                ├── favicon.svg
+    │   ├── architecture.svg        ├── feedback-levels.svg
+    │   ├── results-chart.svg       └── screenshots/
+    │       ├── 01-workspace.png        ├── 02-step-by-step.png
+    │       ├── 03-hint.png             └── 04-analytics.png
+    └── docs/
+        ├── article-ru.pdf          └── article-en.pdf (опционально)</pre>
+      </div>
+      <div class="note">Шапка и подвал дублируются в каждом HTML-файле: при открытии через <code>file://</code> JS-подключение через fetch не работает. Активный пункт меню отмечается классом <code>is-active</code> и атрибутом <code>aria-current="page"</code>.</div>
+    </div>
+  </section>
+
+  <section class="doc-section" id="code">
+    <div class="container">
+      <h2>5. HTML-код структуры</h2>
+      <p class="hint">Ниже — готовый каркас. Кнопка «Копировать» переносит код в буфер; вставьте его в нужный HTML-файл и замените многоточия содержанием из статьи.</p>
+
+      <!-- КОД 1 -->
+      <article class="code-card">
+        <div class="code-head">
+          <div><span class="name">index.html</span><span class="desc">главная страница — полный каркас</span></div>
+          <button class="copy-btn" type="button">Копировать</button>
+        </div>
+        <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;MathVizor — интерактивная платформа обучения математике&lt;/title&gt;
+  &lt;meta name="description" content="MathVizor — интерактивная веб-платформа для развития математического моделирования и исследовательских компетенций обучающихся."&gt;
+  &lt;meta property="og:title" content="MathVizor — интерактивная платформа обучения математике"&gt;
+  &lt;meta property="og:description" content="Визуализация, символьные вычисления, адаптивные задания и аналитика обучения."&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"&gt;
+  &lt;link rel="stylesheet" href="assets/css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Перейти к содержимому&lt;/a&gt;
+
+  &lt;!-- ================= ШАПКА (дублируется на всех страницах) ================= --&gt;
+  &lt;header class="site-header"&gt;
+    &lt;div class="container header-inner"&gt;
+      &lt;a class="logo" href="index.html" aria-label="MathVizor — на главную"&gt;
+        &lt;img src="assets/img/logo.svg" alt="" width="32" height="32"&gt;
+        &lt;span&gt;MathVizor&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;nav class="main-nav" id="main-nav" aria-label="Основная навигация"&gt;
+        &lt;ul class="nav-list"&gt;
+          &lt;li&gt;&lt;a class="is-active" href="index.html" aria-current="page"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+          &lt;li class="has-submenu"&gt;
+            &lt;a href="platform.html"&gt;Платформа&lt;/a&gt;
+            &lt;ul class="submenu"&gt;
+              &lt;li&gt;&lt;a href="platform.html"&gt;Возможности и интерфейс&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="technology.html"&gt;Архитектура и технологии&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="tasks.html"&gt;Задания и обратная связь&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li class="has-submenu"&gt;
+            &lt;a href="pedagogy.html"&gt;Педагогика&lt;/a&gt;
+            &lt;ul class="submenu"&gt;
+              &lt;li&gt;&lt;a href="pedagogy.html"&gt;Педагогический дизайн&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="methodology.html"&gt;Методика использования&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="results.html"&gt;Результаты апробации&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li class="has-submenu"&gt;
+            &lt;a href="about.html"&gt;О проекте&lt;/a&gt;
+            &lt;ul class="submenu"&gt;
+              &lt;li&gt;&lt;a href="about.html#authors"&gt;Авторы&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="publications.html"&gt;Публикации&lt;/a&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;a href="about.html#contacts"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+
+      &lt;a class="btn btn-primary header-cta" href="publications.html"&gt;Читать статью&lt;/a&gt;
+      &lt;button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="main-nav" aria-label="Открыть меню"&gt;
+        &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main id="main"&gt;
+
+    &lt;!-- 1. HERO --&gt;
+    &lt;section class="hero" id="hero"&gt;
+      &lt;div class="container hero-inner"&gt;
+        &lt;p class="eyebrow"&gt;Номинация «Лучшая онлайн-разработка» в области математики и математического образования&lt;/p&gt;
+        &lt;h1&gt;MathVizor&lt;/h1&gt;
+        &lt;p class="lead"&gt;Интерактивная образовательная платформа для развития математического моделирования и исследовательских компетенций обучающихся&lt;/p&gt;
+        &lt;div class="actions"&gt;
+          &lt;a class="btn btn-primary" href="platform.html"&gt;Познакомиться с платформой&lt;/a&gt;
+          &lt;a class="btn btn-ghost" href="publications.html"&gt;Читать статью&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 2. КЛЮЧЕВЫЕ ЦИФРЫ --&gt;
+    &lt;section class="stats" id="stats" aria-labelledby="stats-title"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2 id="stats-title" class="visually-hidden"&gt;Ключевые цифры проекта&lt;/h2&gt;
+        &lt;ul class="stats-grid"&gt;
+          &lt;li&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;span&gt;модуля платформы&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;86&lt;/strong&gt;&lt;span&gt;обучающихся в апробации&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;+24 п.п.&lt;/strong&gt;&lt;span&gt;прирост верных заданий&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;strong&gt;9–11 / 1–2&lt;/strong&gt;&lt;span&gt;классы и курсы&lt;/span&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 3. ПРОБЛЕМА --&gt;
+    &lt;section class="section" id="problem"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Зачем нужен MathVizor&lt;/h2&gt;
+        &lt;p&gt;Традиционное занятие и большинство цифровых сервисов не обеспечивают пошаговую обратную связь и индивидуализацию: учебник даёт готовый результат, системы компьютерной алгебры выдают ответ без объяснения переходов, тесты фиксируют верность ответа, но не выявляют характер ошибки.&lt;/p&gt;
+        &lt;a class="text-link" href="pedagogy.html"&gt;Подробнее о педагогическом дизайне →&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 4. КАК ЭТО РАБОТАЕТ --&gt;
+    &lt;section class="section section-alt" id="how"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Как это работает&lt;/h2&gt;
+        &lt;ol class="steps"&gt;
+          &lt;li&gt;Визуализация объекта&lt;/li&gt;
+          &lt;li&gt;Формулировка гипотезы&lt;/li&gt;
+          &lt;li&gt;Символьная проверка&lt;/li&gt;
+          &lt;li&gt;Рефлексия и вывод&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 5. ЧТО ВНУТРИ --&gt;
+    &lt;section class="section" id="modules"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Что внутри&lt;/h2&gt;
+        &lt;ul class="card-grid"&gt;
+          &lt;li class="card"&gt;
+            &lt;h3&gt;Визуализация&lt;/h3&gt;
+            &lt;p&gt;Графики функций и динамические модели с изменением параметров.&lt;/p&gt;
+            &lt;a href="platform.html"&gt;Подробнее&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li class="card"&gt;
+            &lt;h3&gt;Вычисления&lt;/h3&gt;
+            &lt;p&gt;Пошаговые преобразования с подсказками.&lt;/p&gt;
+            &lt;a href="tasks.html"&gt;Подробнее&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li class="card"&gt;
+            &lt;h3&gt;Практика&lt;/h3&gt;
+            &lt;p&gt;Индивидуальные задания с учётом типа ошибок.&lt;/p&gt;
+            &lt;a href="tasks.html"&gt;Подробнее&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li class="card"&gt;
+            &lt;h3&gt;Аналитика&lt;/h3&gt;
+            &lt;p&gt;Сводка действий для преподавателя.&lt;/p&gt;
+            &lt;a href="platform.html"&gt;Подробнее&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 6. РЕЗУЛЬТАТЫ --&gt;
+    &lt;section class="section section-alt" id="results-preview"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Результаты апробации&lt;/h2&gt;
+        &lt;figure&gt;
+          &lt;img src="assets/img/results-chart.svg"
+               alt="Доля верных заданий выросла с 54 до 78 процентов в экспериментальной группе и с 53 до 64 процентов в контрольной"&gt;
+          &lt;figcaption&gt;Доля верно выполненных заданий до и после внедрения платформы&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;a class="text-link" href="results.html"&gt;Все результаты исследования →&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 7. АВТОРЫ --&gt;
+    &lt;section class="section" id="authors-preview"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Кто реализовал&lt;/h2&gt;
+        &lt;p&gt;ФГБОУ ВО «Мордовский государственный педагогический университет имени М. Е. Евсевьева», физико-математический факультет.&lt;/p&gt;
+        &lt;p&gt;Автор: Асманкин И. М. Научный руководитель: Игушкина К. Н.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 8. ФИНАЛЬНЫЙ CTA --&gt;
+    &lt;section class="cta"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Узнать результаты апробации&lt;/h2&gt;
+        &lt;a class="btn btn-light" href="results.html"&gt;Перейти к результатам&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;!-- ================= ПОДВАЛ (дублируется на всех страницах) ================= --&gt;
+  &lt;footer class="site-footer"&gt;
+    &lt;div class="container footer-grid"&gt;
+      &lt;div&gt;
+        &lt;strong&gt;MathVizor&lt;/strong&gt;
+        &lt;p&gt;Лучшая онлайн-разработка в области математики и математического образования&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;nav aria-label="Ссылки в подвале"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="platform.html"&gt;Платформа&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="methodology.html"&gt;Методика&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="results.html"&gt;Результаты&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="publications.html"&gt;Публикации&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      &lt;div&gt;
+        &lt;p&gt;Мордовский государственный педагогический университет им. М. Е. Евсевьева&lt;/p&gt;
+        &lt;p&gt;Саранск, Россия&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src="assets/js/main.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </article>
+
+      <!-- КОД 2 -->
+      <article class="code-card">
+        <div class="code-head">
+          <div><span class="name">technology.html</span><span class="desc">шаблон внутренней страницы</span></div>
+          <button class="copy-btn" type="button">Копировать</button>
+        </div>
+        <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Архитектура и технологии — MathVizor&lt;/title&gt;
+  &lt;meta name="description" content="Трёхслойная архитектура платформы MathVizor: TypeScript, React, Python, FastAPI, SymPy, PostgreSQL, LTI 1.3 и xAPI."&gt;
+  &lt;link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"&gt;
+  &lt;link rel="stylesheet" href="assets/css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Перейти к содержимому&lt;/a&gt;
+
+  &lt;!-- ШАПКА: скопировать из index.html, снять is-active с «Главная»,
+       поставить is-active и aria-current="page" на «Платформа» --&gt;
+  &lt;header class="site-header"&gt;…&lt;/header&gt;
+
+  &lt;main id="main"&gt;
+
+    &lt;nav class="breadcrumbs" aria-label="Хлебные крошки"&gt;
+      &lt;ol&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="platform.html"&gt;Платформа&lt;/a&gt;&lt;/li&gt;
+        &lt;li aria-current="page"&gt;Архитектура и технологии&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/nav&gt;
+
+    &lt;section class="page-head"&gt;
+      &lt;div class="container"&gt;
+        &lt;h1&gt;Архитектура и технологии&lt;/h1&gt;
+        &lt;p class="lead"&gt;Веб-приложение с трёхслойной архитектурой, работающее в браузере без установки дополнительного ПО.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="section" id="layers"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Трёхслойная архитектура&lt;/h2&gt;
+        &lt;figure&gt;
+          &lt;img src="assets/img/architecture.svg"
+               alt="Схема: клиент TypeScript и React, сервер Python и FastAPI со SymPy, хранилище PostgreSQL с Redis и Celery"&gt;
+          &lt;figcaption&gt;Рисунок 1 — архитектура платформы MathVizor&lt;/figcaption&gt;
+        &lt;/figure&gt;
+
+        &lt;div class="two-columns"&gt;
+          &lt;article&gt;
+            &lt;h3&gt;Клиент&lt;/h3&gt;
+            &lt;p&gt;TypeScript, React, SVG и Canvas — динамическая визуализация в браузере.&lt;/p&gt;
+          &lt;/article&gt;
+          &lt;article&gt;
+            &lt;h3&gt;Сервер&lt;/h3&gt;
+            &lt;p&gt;Python, FastAPI, SymPy — символьные вычисления, генерация заданий, аналитика.&lt;/p&gt;
+          &lt;/article&gt;
+          &lt;article&gt;
+            &lt;h3&gt;Данные&lt;/h3&gt;
+            &lt;p&gt;PostgreSQL; кэширование и фоновые задачи — Redis и Celery.&lt;/p&gt;
+          &lt;/article&gt;
+          &lt;article&gt;
+            &lt;h3&gt;Интеграции и доступность&lt;/h3&gt;
+            &lt;p&gt;LTI 1.3, xAPI, WCAG 2.1; развёртывание в контейнерах Docker.&lt;/p&gt;
+          &lt;/article&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="cta"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Перейти к заданиям&lt;/h2&gt;
+        &lt;a class="btn btn-light" href="tasks.html"&gt;Открыть задания&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+  &lt;/main&gt;
+
+  &lt;!-- ПОДВАЛ: скопировать из index.html --&gt;
+  &lt;footer class="site-footer"&gt;…&lt;/footer&gt;
+
+  &lt;script src="assets/js/main.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </article>
+
+      <!-- КОД 3 -->
+      <article class="code-card">
+        <div class="code-head">
+          <div><span class="name">results.html — фрагмент</span><span class="desc">семантическая таблица 2</span></div>
+          <button class="copy-btn" type="button">Копировать</button>
+        </div>
+        <pre><code>&lt;!-- Фрагмент для results.html: таблица 2 + пояснение к строке «Обоснованные гипотезы» --&gt;
+&lt;figure class="table-block"&gt;
+  &lt;table class="data-table"&gt;
+    &lt;caption&gt;Таблица 2. Динамика показателей диагностики, %&lt;/caption&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope="col"&gt;Показатель&lt;/th&gt;
+        &lt;th scope="col"&gt;Контрольная группа&lt;/th&gt;
+        &lt;th scope="col"&gt;Экспериментальная группа&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Верные задания до внедрения&lt;/th&gt;
+        &lt;td&gt;53&lt;/td&gt;
+        &lt;td&gt;54&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Верные задания после внедрения&lt;/th&gt;
+        &lt;td&gt;64&lt;/td&gt;
+        &lt;td&gt;78&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Обоснованные гипотезы&lt;sup&gt;1&lt;/sup&gt;&lt;/th&gt;
+        &lt;td&gt;41&lt;/td&gt;
+        &lt;td&gt;72&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;th scope="row"&gt;Индекс удовлетворённости, баллы (шкала 1–5)&lt;/th&gt;
+        &lt;td&gt;3,6&lt;/td&gt;
+        &lt;td&gt;4,5&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  &lt;figcaption&gt;
+    &lt;sup&gt;1&lt;/sup&gt; Межгрупповое сравнение после внедрения; данные для оценки динамики
+    этого показателя в источнике не приведены.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      </article>
+
+      <div class="note">
+        <strong>Готовый сайт:</strong> страницы собраны в этой папке, ссылки и изображения проверены, демо-версия исключена. При публикации на хостинге достаточно загрузить содержимое папки целиком — сборка не требуется. Подробности — в <code>README.md</code>.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="container">Рабочий документ по проекту MathVizor · основан на статье-заявке «Лучшая онлайн-разработка» · версия 1.0</div>
+</footer>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.copy-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('.code-card');
+        var code = card ? card.querySelector('code') : null;
+        if (!code) return;
+        var text = code.textContent;
+        var done = function () {
+          var old = btn.textContent;
+          btn.textContent = 'Скопировано ✓';
+          btn.classList.add('done');
+          window.setTimeout(function () {
+            btn.textContent = old;
+            btn.classList.remove('done');
+          }, 1600);
+        };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+        } else {
+          fallback(text, done);
+        }
+      });
+    });
+
+    function fallback(text, done) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* буфер недоступен */ }
+      document.body.removeChild(area);
+    }
+  }());
+</script>
+
+</body>
+</html>

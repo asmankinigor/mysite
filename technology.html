@@ -1,0 +1,141 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Архитектура и технологии — MathVizor</title>
+  <meta name="description" content="Трёхслойная архитектура платформы MathVizor: TypeScript, React, Python, FastAPI, SymPy, PostgreSQL, LTI 1.3 и xAPI.">
+  <meta property="og:title" content="Архитектура и технологии — MathVizor">
+  <meta property="og:description" content="Трёхслойная архитектура платформы MathVizor: TypeScript, React, Python, FastAPI, SymPy, PostgreSQL, LTI 1.3 и xAPI.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ================= ШАПКА (дублируется на всех страницах) ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="MathVizor — на главную">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        <span>MathVizor</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="index.html">Главная</a></li>
+          <li class="has-submenu">
+            <a href="platform.html" class="is-active" aria-current="page">Платформа</a>
+            <ul class="submenu">
+              <li><a href="platform.html">Возможности и интерфейс</a></li>
+              <li><a href="technology.html">Архитектура и технологии</a></li>
+              <li><a href="tasks.html">Задания и обратная связь</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="pedagogy.html">Педагогика</a>
+            <ul class="submenu">
+              <li><a href="pedagogy.html">Педагогический дизайн</a></li>
+              <li><a href="methodology.html">Методика использования</a></li>
+              <li><a href="results.html">Результаты апробации</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="about.html">О проекте</a>
+            <ul class="submenu">
+              <li><a href="about.html#authors">Авторы</a></li>
+              <li><a href="publications.html">Публикации</a></li>
+              <li><a href="about.html#contacts">Контакты</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-primary header-cta" href="publications.html">Читать статью</a>
+      <button class="nav-toggle" type="button" aria-expanded="false"
+              aria-controls="main-nav" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main">
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="platform.html">Платформа</a></li>
+        <li aria-current="page">Архитектура и технологии</li>
+      </ol>
+    </nav>
+
+    <section class="page-head">
+      <div class="container">
+        <h1>Архитектура и технологии</h1>
+        <p class="lead">Веб-приложение с трёхслойной архитектурой, работающее в браузере без установки дополнительного ПО.</p>
+      </div>
+    </section>
+
+    <section class="section" id="layers">
+      <div class="container">
+        <h2>Трёхслойная архитектура</h2>
+        <figure>
+          <img src="assets/img/architecture.svg"
+               alt="Схема: клиент TypeScript и React, сервер Python и FastAPI со SymPy, хранилище PostgreSQL с Redis и Celery">
+          <figcaption>Рисунок 1 — архитектура платформы MathVizor</figcaption>
+        </figure>
+
+        <div class="two-columns">
+          <article>
+            <h3>Клиент</h3>
+            <p>TypeScript, React, SVG и Canvas — динамическая визуализация в браузере.</p>
+          </article>
+          <article>
+            <h3>Сервер</h3>
+            <p>Python, FastAPI, SymPy — символьные вычисления, генерация заданий, аналитика.</p>
+          </article>
+          <article>
+            <h3>Данные</h3>
+            <p>PostgreSQL; кэширование и фоновые задачи — Redis и Celery.</p>
+          </article>
+          <article>
+            <h3>Интеграции и доступность</h3>
+            <p>LTI 1.3, xAPI, WCAG 2.1; развёртывание в контейнерах Docker.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Перейти к заданиям</h2>
+        <a class="btn btn-light" href="tasks.html">Открыть задания</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= ПОДВАЛ (дублируется на всех страницах) ================= -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>MathVizor</strong>
+        <p>Лучшая онлайн-разработка в области математики и математического образования</p>
+      </div>
+      <nav aria-label="Ссылки в подвале">
+        <ul>
+          <li><a href="platform.html">Платформа</a></li>
+          <li><a href="methodology.html">Методика</a></li>
+          <li><a href="results.html">Результаты</a></li>
+          <li><a href="publications.html">Публикации</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p>Мордовский государственный педагогический университет им. М. Е. Евсевьева</p>
+        <p>Саранск, Россия</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

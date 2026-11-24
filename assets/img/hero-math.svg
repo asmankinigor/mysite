@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1f4d"/>
+      <stop offset="0.55" stop-color="#1e40af"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="curve" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="0.5" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#93c5fd"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#bg)"/>
+
+  <!-- сетка -->
+  <g stroke="#ffffff" stroke-opacity="0.09" stroke-width="1">
+    <path d="M0 60H1200 M0 120H1200 M0 180H1200 M0 240H1200 M0 300H1200 M0 360H1200 M0 420H1200 M0 480H1200"/>
+    <path d="M80 0V520 M160 0V520 M240 0V520 M320 0V520 M400 0V520 M480 0V520 M560 0V520 M640 0V520 M720 0V520 M800 0V520 M880 0V520 M960 0V520 M1040 0V520 M1120 0V520"/>
+  </g>
+
+  <!-- полупрозрачные панели -->
+  <rect x="790" y="70" width="340" height="150" rx="14" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+  <rect x="790" y="250" width="340" height="200" rx="14" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.16"/>
+
+  <!-- кривые -->
+  <path d="M-40 380 C 180 380, 260 120, 460 200 S 700 430, 900 250 S 1120 120, 1260 180"
+        fill="none" stroke="url(#curve)" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+  <path d="M-40 300 C 200 460, 340 60, 560 300 S 900 480, 1240 140"
+        fill="none" stroke="#93c5fd" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M-40 450 C 260 240, 420 460, 700 280 S 1040 380, 1240 300"
+        fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.38"/>
+
+  <!-- критические точки -->
+  <circle cx="460" cy="200" r="44" fill="url(#glow)"/>
+  <circle cx="460" cy="200" r="8" fill="#fbbf24" stroke="#fff" stroke-width="3"/>
+  <circle cx="900" cy="250" r="44" fill="url(#glow)"/>
+  <circle cx="900" cy="250" r="8" fill="#fbbf24" stroke="#fff" stroke-width="3"/>
+  <line x1="460" y1="200" x2="460" y2="260" stroke="#fbbf24" stroke-opacity="0.6" stroke-dasharray="5 5"/>
+  <line x1="900" y1="250" x2="900" y2="310" stroke="#fbbf24" stroke-opacity="0.6" stroke-dasharray="5 5"/>
+
+  <!-- декоративные подсказки без текста -->
+  <rect x="820" y="96" width="180" height="12" rx="6" fill="#ffffff" fill-opacity="0.45"/>
+  <rect x="820" y="122" width="250" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="820" y="144" width="210" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="820" y="278" width="140" height="12" rx="6" fill="#fbbf24" fill-opacity="0.8"/>
+  <rect x="820" y="306" width="270" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="820" y="328" width="230" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="820" y="350" width="260" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="820" y="390" width="170" height="34" rx="10" fill="#60a5fa" fill-opacity="0.5"/>
+</svg>

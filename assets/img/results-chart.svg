@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#172033">Доля верно выполненных заданий, %</text>
+
+  <line x1="70" y1="300" x2="690" y2="300" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="70" y1="60" x2="70" y2="300" stroke="#94a3b8" stroke-width="2"/>
+
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="70" y1="240" x2="690" y2="240"/>
+    <line x1="70" y1="180" x2="690" y2="180"/>
+    <line x1="70" y1="120" x2="690" y2="120"/>
+    <line x1="70" y1="60" x2="690" y2="60"/>
+  </g>
+  <g font-size="12" fill="#64748b" text-anchor="end">
+    <text x="62" y="304">0</text>
+    <text x="62" y="244">20</text>
+    <text x="62" y="184">40</text>
+    <text x="62" y="124">60</text>
+    <text x="62" y="64">80</text>
+  </g>
+
+  <!-- Контрольная группа -->
+  <rect x="130" y="168" width="80" height="132" rx="5" fill="#94a3b8"/>
+  <text x="170" y="158" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">53</text>
+  <rect x="225" y="132" width="80" height="168" rx="5" fill="#64748b"/>
+  <text x="265" y="122" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">64</text>
+
+  <!-- Экспериментальная группа -->
+  <rect x="420" y="165" width="80" height="135" rx="5" fill="#93c5fd"/>
+  <text x="460" y="155" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">54</text>
+  <rect x="515" y="105" width="80" height="195" rx="5" fill="#2563eb"/>
+  <text x="555" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">78</text>
+
+  <text x="220" y="324" text-anchor="middle" font-size="13" fill="#334155">Контрольная группа</text>
+  <text x="510" y="324" text-anchor="middle" font-size="13" fill="#334155">Экспериментальная группа</text>
+  <text x="170" y="347" text-anchor="middle" font-size="12" fill="#64748b">до → после</text>
+  <text x="460" y="347" text-anchor="middle" font-size="12" fill="#64748b">до → после</text>
+</svg>

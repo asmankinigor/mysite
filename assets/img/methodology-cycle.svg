@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 620" font-family="Arial, sans-serif">
+  <rect width="620" height="620" fill="#f8fafc"/>
+  <circle cx="310" cy="310" r="220" fill="none" stroke="#dbeafe" stroke-width="46"/>
+  <circle cx="310" cy="310" r="120" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="310" y="292" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e40af">Исследовательский</text>
+  <text x="310" y="320" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e40af">цикл</text>
+  <text x="310" y="352" text-anchor="middle" font-size="13" fill="#64748b">4 этапа работы</text>
+
+  <g>
+    <circle cx="310" cy="90" r="46" fill="#2563eb"/>
+    <text x="310" y="98" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">1</text>
+    <text x="310" y="24" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e40af">Проблема и гипотеза</text>
+
+    <circle cx="530" cy="310" r="46" fill="#16a34a"/>
+    <text x="530" y="318" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">2</text>
+    <text x="530" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#166534">Эксперимент</text>
+
+    <circle cx="310" cy="530" r="46" fill="#d97706"/>
+    <text x="310" y="538" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">3</text>
+    <text x="310" y="600" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400e">Аналитика</text>
+
+    <circle cx="90" cy="310" r="46" fill="#7c3aed"/>
+    <text x="90" y="318" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">4</text>
+    <text x="90" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#5b21b6">Рефлексия</text>
+  </g>
+
+  <g fill="none" stroke="#94a3b8" stroke-width="3">
+    <path d="M375 118 A 220 220 0 0 1 502 245" marker-end="url(#p)"/>
+    <path d="M502 375 A 220 220 0 0 1 375 502" marker-end="url(#p)"/>
+    <path d="M245 502 A 220 220 0 0 1 118 375" marker-end="url(#p)"/>
+    <path d="M118 245 A 220 220 0 0 1 245 118" marker-end="url(#p)"/>
+  </g>
+  <defs>
+    <marker id="p" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+</svg>
