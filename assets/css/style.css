@@ -14,6 +14,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 84px; }
 body {
   margin: 0;
   font: 16px/1.65 "Segoe UI", Arial, sans-serif;
@@ -223,6 +224,94 @@ figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
 .gallery img { border-radius: 8px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #eef2f7; }
 .gallery figcaption { font-weight: 600; text-align: center; }
 
+/* ---------- Форма ввода задания ---------- */
+.task-form {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+}
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.form-field { display: flex; flex-direction: column; min-width: 0; }
+.form-field label { font-weight: 700; margin-bottom: 6px; }
+.form-field .sub-label { margin-top: 16px; }
+.form-field input[type="text"],
+.form-field textarea,
+.form-field select,
+.result-override select {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--line);
+  border-radius: 8px; background: #fff; color: var(--ink);
+  font: inherit; font-size: 15px;
+}
+.form-field textarea { resize: vertical; min-height: 96px; }
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus,
+.result-override select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.form-field input[type="file"] { font-size: 13px; max-width: 100%; padding: 6px 0; }
+.field-hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.graph-preview {
+  display: block; max-height: 220px; margin-top: 10px;
+  border: 1px solid var(--line); border-radius: 8px; background: #f8fafc; object-fit: contain;
+}
+.graph-preview[hidden] { display: none; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.form-actions .btn-light { border-color: var(--line); }
+
+.task-result { margin-top: 22px; }
+.task-result[hidden] { display: none; }
+.result-card {
+  background: #fff; border: 1px solid var(--accent); border-left-width: 5px;
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+}
+.result-label {
+  margin: 0 0 4px; font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--accent);
+}
+.result-card h3 { font-size: 22px; }
+.result-summary { color: var(--muted); }
+.result-caption { margin: 14px 0 4px; font-size: 14px; font-weight: 700; }
+.result-signals { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+.result-override {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
+}
+.result-override label { font-size: 14px; font-weight: 600; }
+.result-override select { width: auto; max-width: 100%; }
+.result-override .btn-light { border-color: var(--line); }
+.result-error { border-left-color: #b45309; }
+.result-error h3 { color: #b45309; }
+
+.generated-method {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line);
+}
+.generated-method h4 { font-size: 19px; margin: 0 0 12px; }
+.method-steps { list-style: none; padding: 0; counter-reset: method; }
+.method-steps li {
+  position: relative; margin: 0 0 12px; padding: 12px 16px 12px 46px;
+  background: var(--accent-soft); border-radius: 10px;
+}
+.method-steps li strong { display: block; color: var(--accent-dark); }
+.method-steps p { margin: 4px 0 0; font-size: 14px; color: var(--ink); }
+.method-implementation {
+  margin-top: 16px; padding: 16px; background: #f8fafc;
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.method-implementation h5 { font-size: 16px; margin: 0 0 10px; }
+.method-implementation p { font-size: 14px; margin-bottom: 8px; }
+.method-plot-wrap { margin: 12px 0 6px; }
+.plot-svg-host { display: block; }
+.method-plot {
+  display: block; width: 100%; max-width: 680px; height: auto;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px; margin: 10px 0;
+  cursor: grab; touch-action: none; user-select: none;
+}
+.method-plot.is-dragging { cursor: grabbing; }
+.method-plot text { font-family: var(--font-body, system-ui, sans-serif); pointer-events: none; }
+.plot-hover text { paint-order: stroke; }
+.plot-scale { font-size: 12px; color: #64748b; margin: 0; }
+.plot-hint { font-size: 12px; color: #94a3b8; margin: 4px 0 0; }
+.form-field-wide { max-width: 760px; }
+.method-link { margin: 18px 0 0; }
+
 /* ---------- Подвал ---------- */
 .site-footer { background: #10192b; color: #cbd5e1; padding: 40px 0 28px; font-size: 14px; }
 .site-footer a { color: #93c5fd; }
@@ -254,6 +343,9 @@ figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
   .data-table { font-size: 13px; }
   .data-table th, .data-table td { padding: 8px; }
   .data-table tbody th { width: auto; }
+  .form-grid { grid-template-columns: 1fr; }
+  .task-form, .result-card { padding: 18px; }
+  .result-override select { width: 100%; }
 }
 /* ---------- Иллюстрации ---------- */
 .hero-inner {
